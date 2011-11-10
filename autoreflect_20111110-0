@@ -38,6 +38,6 @@ echo "New mirrorlist generated."
 
 # Resync pacman mirrors.
 #
-echo "Resynching mirrors..."
+echo "Re-synching mirrors..."
 pacman -Syy
 echo "Mirrorlist update complete!"
