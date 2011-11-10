@@ -1,0 +1,3 @@
+Autoreflect automatically backs up /etc/pacman.d/mirrorlist and replaces it with a fresh mirrorlist, via Reflector, containing the fastest 8 mirrors.
+
+This script requires root privileges. For best results, use cron to schedule it as a root cronjob for fully automated mirrorlist refreshing.
