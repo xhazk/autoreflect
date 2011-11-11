@@ -3,7 +3,7 @@
 # /usr/bin/autoreflect - backup pacman mirrorlist and output fastest 8 mirrors to new list via Reflector.
 # For full automation, add autoreflect as a root cron job.
 #
-# Created by xhazk (xhazzk@gmail.com) 2011-11-10. This script is free to use, alter and distribute with no limitations.
+# Created by xhazk (xhazzk<@>gmail*com) 2011-11-10. This script is free to use, alter and distribute with no limitations.
 #
 
 # Does the user have root?
@@ -38,6 +38,6 @@ echo "New mirrorlist generated."
 
 # Resync pacman mirrors.
 #
-echo "Re-synching mirrors..."
+echo "Re-syncing mirrors..."
 pacman -Syy
 echo "Mirrorlist update complete!"
