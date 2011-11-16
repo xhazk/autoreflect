@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# /usr/bin/autoreflect - Backs up the current mirrorlist and generates a new, optimized list via Reflector. 
+# Selects only fresh mirrors and sorts by speed. For full automation, set autoreflect as a root cron job.
+#
+# Created by xhazk (xhazzk<@>gmail*com)
+# Licensed under the GNU General Public License.
+
+if [[ $EUID != 0 ]]; then 
+	echo "This script requires root. Aborting!" 1>&2
+	exit 1 
+fi
+
+if ! which reflector &>/dev/null; then 
+	echo "Please 'pacman -S Reflector'." 1>&2
+	exit 1
+fi
+
+	echo "Backing up mirror list and replacing it with an optimized list..." 1>&2
+
+	cp /etc/pacman.d/mirrorlist{,.bak}
+
+	reflector --threads $(grep -c '^processor' /proc/cpuinfo) -l 25 -a 168 \
+		-p http -f 5 --sort rate --save /etc/pacman.d/mirrorlist
+
+	pacman -Syy
+	
+	echo "Done! Please run 'pacman -Su' now." 1>&2
+	echo "Tip: Set autoreflect as a root cron job for automatic syncing." 1>&2
